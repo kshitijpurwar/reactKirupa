@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React learn and practice</title>
+    <script src="https://unpkg.com/react@15.3.1/dist/react.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js" charset="utf-8"></script>
+
+    <style media="screen">
+    #container{
+        max-width: 1080px;
+        margin: 0 auto;
+        font-family: sans-serif;
+    }
+    .letswster{
+        margin: 10px;
+        padding: 20px 30px;
+        color: #000;
+        font-family: monospace;
+        font-size: 32px;
+        text-align: center;
+        background-color: #dcff51;
+        display: inline-block;
+    }
+    .letters{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    body,html,#container,.letters{
+        height: 100%;
+        overflow-y: hidden;
+    }
+    body{
+        background-color: #2c4200;
+    }
+
+    </style>
+
+</head>
+<body>
+    <div id="container">
+
+    </div>
+
+
+    <script type="text/babel">
+
+    var Hello = React.createClass({
+        render: function(){
+            return (
+                <h2> Hello {this.props.greetTarget}! </h2>
+            );
+        }
+    });
+
+    var Buttonify = React.createClass({
+        render: function(){
+            return (
+                <div>
+                <button type={this.props.behaviour}>{this.props.children}</button>
+                </div>
+            );
+        }
+    });
+
+    var Letter = React.createClass({
+
+        render: function(){
+            var letterStyle = {
+                padding: "20px 30px",
+                margin: "10px",
+                color: "#000",
+                fontFamily: "monospace",
+                fontSize: "32px",
+                textAlign: "center",
+                backgroundColor: this.props.bgcolor,
+                display: "inline-block"
+            };
+            return(
+                <div style={letterStyle}>
+                    {this.props.children}
+                </div>
+            );
+        }
+    })
+
+    var destination = document.querySelector('#container');
+    ReactDOM.render(
+        <div className="letters">
+            <Letter bgcolor="red">A</Letter>
+            <Letter bgcolor="blue">E</Letter>
+            <Letter bgcolor="green">I</Letter>
+            <Letter bgcolor="white">O</Letter>
+            <Letter bgcolor="purple">U</Letter>
+        </div>,
+        destination
+    );
+
+    // ReactDOM.render(
+    //     <div>
+    //     <Buttonify behaviour="Submit">Find more</Buttonify>
+    //     <Buttonify behaviour="close">Close</Buttonify>
+    //     <Buttonify behaviour="role">Fuck</Buttonify>
+    //
+    //     </div>,
+    //     document.querySelector('#container')
+    // );
+    </script>
+
+</body>
+</html>

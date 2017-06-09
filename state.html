@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Counter</title>
+    <script src="https://unpkg.com/react@15.3.1/dist/react.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+
+    <style media="screen">
+    #container{
+        max-width: 1080px;
+        margin: 0 auto;
+        font-family: sans-serif;
+    }
+    /*.pallete{
+    display: flex;
+    justify-content: space-around;
+    }*/
+
+    </style>
+
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script type="text/babel">
+
+    var MessageBox = React.createClass({
+        handleAdd: function(e){
+            let newMessage = this.refs.newMessage.value;
+            this.refs.newMessage.value ="";
+            console.log(this,newMessage);
+            if(newMessage != ""){
+                let newMessages = this.state.messages.concat([newMessage]);
+
+                this.setState({
+                    messages: newMessages
+                });
+            }
+            else {
+                alert("empty Input!");
+            }
+        },
+        getInitialState: function(){
+            return{
+                isVisible: true ,
+                titleMessage: 'Hello, world!',
+                count: 100,
+                now: '',
+                messages:[ "Lol",
+                            "Hello",
+                            "Hola",
+                            "Namaste",
+                            "Ciao"
+                        ]
+            }
+        },
+        componentDeveidMount: function(){
+            debugger;
+            setInterval(this.IncrementCount,100);
+        },
+        IncrementCount: function(){
+            if( this.state.count < 720 ){
+                this.setState({
+                    count: this.state.count + 10,
+                    now: Date()
+                });
+            }
+        },
+        componentWillMount: function() {
+            debugger;
+        },
+        deleteMessage: function(message){
+            console.log('deleting',message);
+            let newMessages = _.without(this.state.messages,message);
+            console.log(newMessages);
+            this.setState({
+                messages: newMessages
+            });
+        },
+        color: function(number){
+            return "rgb(" + (256 - number/8) + "," + (256 - number/8) +"," + (256 - number/8) + ")";
+        },
+        render: function(){
+            var messageStyle = {
+                display: this.state.isVisible?'block':'none',
+                transition: "all .1s linear",
+                // width: this.state.count + "px",
+                // height: this.state.count + "px",
+                // backgroundColor: this.color(this.state.count),
+                display:"flex",
+                justifyContent:"center",
+                alignItems: "center",
+                margin: "0px auto",
+                padding:"20px",
+                fontFamily: "sans-serif",
+                flexDirection: "column"
+            };
+            var subMessages = this.state.messages.map(function(message){
+                return <SubMessage message={message} onDelete={this.deleteMessage}/>;
+            }.bind(this));
+            return (
+                <div style={messageStyle}>
+                <h1>{this.state.count}<small> px</small></h1>
+                <h2>{this.props.title}</h2>
+                <input type="text" ref="newMessage"/>
+                <button onClick={this.handleAdd}>ADD</button>
+                {subMessages}
+                </div>
+            );
+        }
+    });
+
+
+    var SubMessage = React.createClass({
+        handleDelete: function(e){
+            console.log(this.props, e);
+            this.props.onDelete(this.props.message)
+        },
+        getDefaultProps: function(){
+                return {
+                    message:"Hiiiiiiii !"
+                }
+        },
+        render: function(){
+            return (
+                <div>
+                    <small>{this.props.message}</small>
+                    <button onClick={this.handleDelete}>&times;</button>
+                </div>
+            );
+        }
+    });
+
+    var message = "Yo Yo!";
+
+    ReactDOM.render(
+        <MessageBox title={message}/>,
+        document.getElementById('root')
+    );
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pallete colors</title>
+    <script src="https://unpkg.com/react@15.3.1/dist/react.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js" charset="utf-8"></script>
+
+    <style media="screen">
+    #container{
+        max-width: 1080px;
+        margin: 0 auto;
+        font-family: sans-serif;
+    }
+    /*.pallete{
+        display: flex;
+        justify-content: space-around;
+    }*/
+
+    </style>
+
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script type="text/babel">
+
+    var Label = React.createClass({
+        render: function(){
+            var labelStyle = {
+                fontFamily:"sans-serif",
+                margin:0,
+                fontWeight: "900",
+                height: "50px",
+                lineHeight: "50px",
+                textAlign: "center",
+                fontSize: "20px",
+                letterSpacing: "2.2px",
+                textTransform: "uppercase"
+            };
+            return (
+                <div style={labelStyle}>
+                    {this.props.color}
+                </div>
+            );
+        }
+    });
+
+    var Square = React.createClass({
+        render: function(){
+            var squareStyle = {
+                height: "200px",
+                backgroundColor: this.props.color,
+            };
+            return (
+                <div style={squareStyle}>
+                </div>
+            );
+        }
+    });
+
+    var Card = React.createClass({
+        render: function(){
+            var cardStyle = {
+                width: "200px",
+                height: "250px",
+                padding: 0,
+                float: "left",
+                margin:"10px",
+                marginTop: "20px",
+                backgroundColor: "#fff",
+                boxShadow:"0px 0px 15px grey",
+                display:"inline-block"
+            };
+            return (
+                <div style={cardStyle}>
+                    <Square {...this.props}/>
+                    <Label  {...this.props}/>
+                </div>
+            );
+        }
+    });
+
+    var destination = document.querySelector('#container');
+
+    ReactDOM.render(
+        <div className="pallete">
+            <Card color="#1723ad"/>
+            <Card color="#a6df3d"/>
+            <Card color="#fd789a"/>
+            <Card color="#fe7a91"/>
+            <Card color="#ad0893"/>
+            <Card color="#a83"/>
+            <Card color="#093"/>
+        </div>,
+        destination
+    );
+
+    </script>
+
+</body>
+</html>

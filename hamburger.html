@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamburger with overlay menu</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,600" rel="stylesheet">
+
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style media="screen">
+  body, html {
+    height: 100%;
+  }
+
+  body {
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    margin: 0;
+  }
+  body.MenuShow{
+    overflow: hidden;
+  }
+  body.MenuShow .overlayMenu{
+    transform: translate(0%, 0%) scale(1);
+  }
+
+  *{
+    font-family: 'Fira Sans', sans-serif;
+  }
+
+  .hamburger {
+    position: fixed;
+    height: 18px;
+    width: 24px;
+    top: 40px;
+    right: 40px;
+    z-index: 2;
+  }
+  .hamburger .top, .hamburger .mid, .hamburger .bottom {
+    background: #000;
+    height: 1px;
+    width: 24px;
+    display: block;
+    opacity: 1;
+    position: absolute;
+  }
+  .hamburger .top {
+    top: 0;
+    transition: all 0.1s ease-in-out;
+  }
+  .hamburger .bottom {
+    bottom: 0;
+    transition: all 0.1s ease-in-out;
+  }
+  .hamburger .mid {
+    top: 50%;
+    transition: display 0.5s ease-in-out;
+  }
+
+  .hamburger.closed .mid {
+    display: none;
+    transition: all 0.5s ease-in-out;
+
+  }
+  .hamburger.closed .top, .hamburger.closed .bottom {
+    background: #fff;
+    top: 50%;
+  }
+  .hamburger.closed .top {
+    transform: rotate(45deg);
+
+  }
+  .hamburger.closed .bottom {
+    transform: rotate(-45deg);
+  }
+
+  .overlayMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #1a2879;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transform: translate(0%,-100%) scale(0);
+    transition: all 0.3s ease-in-out;
+  }
+  ul{
+    list-style: none;
+    padding: 0px;
+  }
+  li a{
+    color: #fff;
+    font-size: 2.6rem;
+    text-decoration: none;
+  }
+  li:not(:last-child){
+    margin-bottom: 3rem;
+  }
+  .text{
+    max-width: 960px;
+    color: #1a2879;
+    margin: 100px auto;
+    padding: 10px;
+
+  }
+  h1{
+    font-weight: 600;
+    font-size: 2.8rem;
+  }
+
+  p{
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 4rem;
+  }
+  img{
+    width: 100%;
+    margin: 0 auto;
+    border: none;
+  }
+  p:last-child{
+    text-align: right;
+  }
+  a{
+    text-decoration: none;
+    color: orange;
+  }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="overlayMenu">
+    <ul>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">About us</a>
+      </li>
+      <li>
+        <a href="#">Portfolio</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <div class='hamburger' id='ham'>
+    <span class='top'></span>
+    <span class='mid'></span>
+    <span class='bottom'></span>
+  </div>
+
+  <div class="text">
+    <h1>
+      This is a heading!!
+    </h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <img src="https://static.pexels.com/photos/380863/pexels-photo-380863.jpeg" alt="Misty fields">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Made By <a href="https://kshitijpurwar.com/">Kshitij Purwar</a>
+    </p>
+  </div>
+
+
+  <script type="text/javascript">
+  window.onload = function(){
+    const hamburger = document.querySelector('.hamburger');
+    const body = document.querySelector('body');
+
+    hamburger.onclick = function(){
+      hamburger.classList.toggle('closed');
+      body.classList.toggle('MenuShow');
+    }
+  }
+
+
+  </script>
+</body>
+</html>
